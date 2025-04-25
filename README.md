@@ -16,12 +16,12 @@ Your role is as a software engineering team building a timer application. Your t
 
 > “As a student participating in swarm coding sessions
 > I want a timer component that I can set with minutes and seconds
-> So that I can track and limit the time spent on coding activities"
+> So that I can track and limit the time spent on coding activities. The timer component should be able to start, stop, and reset the timer. The timer should display the remaining time in a human-readable format (e.g., "02:30" for 2 minutes and 30 seconds). The timer should also have a callback function that is called when the time is up.”
 
 Follow the steps in [kent beck’s post on testing](https://tidyfirst.substack.com/p/canon-tdd) as an example. A few notes:
 
 - Record the brainstorm tests in a comment at the beginning of the test file. Think about how the component will be used. What are the inputs and outputs? What are the edge cases (cases at the extremes of the possible passed values)? What are the error cases? What are the "happy paths" where the component gets passed something expected? What are the "sad paths" where the component is called wrong or in a contradictory way? What are the performance cases?
-- A first test for rendering a component; not passing is included at no extra charge.
+- A first test for rendering a component; not passing is included at no extra charge. Watch how this one runs and logs the html for debugging.
 
 Get things running early and often. Have a simple test first. Use `screen.debug()` from the testing library to verify what is rendered.
 Your tests will go in the file basic.test.tsx; the component will go in /components/Timer.tsx. It’s scaffolded in the template. The template includes a function to produce a string of remaining time ([formatDuration](./src/functions/duration.ts)) that’s ready made for you (duration.ts already imported in Timer.tsx).

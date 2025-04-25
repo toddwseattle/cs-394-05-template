@@ -1,19 +1,23 @@
+import './App.css';
+
 import React, { useState } from 'react';
 
-import './App.css';
 import logo from './394-2025-Logo.svg';
 import Timer from './components/Timer';
 
 function App() {
   const [selectedTime, setSelectedTime] = useState(1);
-
+  const [isRunning, setIsRunning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isReset, setIsReset] = useState(false);
+  const [isFinished, setIsFinished] = useState(false);
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Time to Code!</h1>
       </header>
-      <Timer secondsDuration={selectedTime} />
+      <Timer secondsDuration={selectedTime} isRunning={false} />
       <div className="timer-controls">
         <label htmlFor="time-select" className="time-select-label">
           <h2> Select Timer Duration:</h2>
@@ -32,8 +36,10 @@ function App() {
           <option value={20}>20 minutes</option>
           <option value={30}>30 minutes</option>
         </select>
+        if(isFinished) {<h2>Time&apos;s up!</h2>}
         <button className="timer-button">Start</button>
         <button className="timer-button">Stop</button>
+        <button className="timer-button">Reset</button>
       </div>
     </div>
   );
