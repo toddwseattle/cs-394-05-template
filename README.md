@@ -1,56 +1,47 @@
-# Vite + React + Typescript + Eslint + Prettier: an example repo Updated for 2025!
+# Building a Timer Component with Test Driven Development
 
-A starter for React with Typescript with the fast Vite, Vitest and all static code testing with Eslint and formatting with Prettier. As of this writing updated to React 19; and the latest versions of all tools as of March 2025. This was built for use by the [Northwestern University CS394 Class taught by Todd Warren](https://toddwseattle.com/blog/2025-02-05-CS394-2025-Spring-Software-Engineering-Course/)
+## Overview
 
-Once up and running it looks like this:
+In this lab, we will ask you to develop a timer component test first. Unlike the other labs; it's ok to pair or swarm with a few other. We will use react and vitetest to create a simple component using test driven development. The goal of this assignment:
 
-![Vite + React + Typescript + Vitest + Eslint + Prettier](/resources/2025-screenshot.png)
+-Learn a little bit of technical stuff about testing with vitest
 
-You can find more about these in the following links: [Vite](https://vitejs.dev), [React](https://reactjs.org/), [Typescript](https://www.typescriptlang.org/), [Eslint](https://eslint.org/), [Prettier](https://prettier.io/), [Vitest](https://vitest.dev/)
+- Give TDD a try to form an opinion.
 
-## Installation
+Please refrain from using AI on this assignment.
 
-- Make sure you are running node 20 or later
-- npm 10.x or higher (comes with Node.js 20)
+## Steps
 
-```
-node --version
-```
+Your role is as a software engineering team building a timer application. Your team manager has assigned you the story:
 
-Clone the repo and run `npm install`
+> “As a student participating in swarm coding sessions
+> I want a timer component that I can set with minutes and seconds
+> So that I can track and limit the time spent on coding activities"
 
-or preferred Run command
+Follow the steps in [kent beck’s post on testing](https://tidyfirst.substack.com/p/canon-tdd) as an example. A few notes:
 
-```
-npx degit toddwseattle/pretty-vitest-react-ts-template project-name
-```
+- Record the brainstorm tests in a comment at the beginning of the test file. Think about how the component will be used. What are the inputs and outputs? What are the edge cases (cases at the extremes of the possible passed values)? What are the error cases? What are the "happy paths" where the component gets passed something expected? What are the "sad paths" where the component is called wrong or in a contradictory way? What are the performance cases?
+- A first test for rendering a component; not passing is included at no extra charge.
 
-this will create a clean version of the template in the `project-name` folder. omit project-name to create in the current directory. You will then need to initialize git yourself and push to github.
+Get things running early and often. Have a simple test first. Use `screen.debug()` from the testing library to verify what is rendered.
+Your tests will go in the file basic.test.tsx; the component will go in /components/Timer.tsx. It’s scaffolded in the template. The template includes a function to produce a string of remaining time ([formatDuration](./src/functions/duration.ts)) that’s ready made for you (duration.ts already imported in Timer.tsx).
 
-## Start
+When you feel complete as a pair/triad; submit the url to the repo and pair/triad names to the canvas for each person.
 
-Install packages: `npm run dev`
+## Some Technical Hints
 
-## Steps in Vscode
+- In react, you will need to use hooks (useState) and useEffect() in the component.
+- See Chris Riesbeck’s “Testing” Resources on this page: [Software Development Resources](https://courses.cs.northwestern.edu/394/guides/overviews.php).
+- We use the react testing library; especially “render” and “screen”. This [tutorial](https://www.freecodecamp.org/news/react-testing-library-tutorial-javascript-example-code/) is particularly helpful
+  -The vitest function vi.fn is especially useful when testing callbacks. This page explains mocks generally including `vi.fn()`. [Mocking | Guide | Vitest](https://vitest.dev/guide/mocking)
+- Two useful methods during testing from the react test tools are `screen.debug()` and `screen.logTestingPlaygroundURL()`.
 
-#### (works better with this template)
+  - This [blog](https://testing-library.com/docs/dom-testing-library/api-debugging/) article provides a summary of this and some other tips for debugging purposes.
+  - `screen.debug()` puts the html that would be rendered in the console
+  - `screen.logTestingPlaygroundURL()` returns a url that you can traverse to see your current component rendered in the browser.
 
-1. Install Eslint and prettier extension for vs code (separate extensions; not the combined one)
-2. Make Sure Both are enabled
-3. Make sure all packages are Installed. (Mostly Eslint and prettier in node_modules)
-4. Enable formatOnSave of vs code
-5. Open a .tsx file and check if the bottom right corners of vs code have Eslint and Prettier with a double tick
+- The assignment also has timing which is tricky and discussed in the mocking guide; as a hint you don’t need to mock the time of the computer to test elapsed time.
 
-![Screenshot (253)_LI](https://user-images.githubusercontent.com/52120562/162486286-7383a737-d555-4f9b-a4dd-c4a81deb7b96.jpg)
+## Verifying results
 
-If Everything is Good Then It Should Work, but let me new if something else happens.
-
-## pre-commit hook to lint files with eslint/prettier
-
-In this template, when you commit via `git commit` a [pre-commit hook](https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks) runs the command `npm run lint`, so that eslint and prettier are run and modify the files to conform. Consequently, you may end up with new changes after you commit! The easiest way to make sure you get a clean commit is to `npm run lint` before you commit.
-
-The npm command used in pre-commit is in the package.json key ` "pre-commit": "lint"`. Change or remove this as you see fit for your project.
-
-## Authorship and acknowledgments
-
-This was based on a [starter made with ❤️ by theSwordBreaker](https://github.com/TheSwordBreaker/vite-reactts-eslint-prettier). Thanks theSwordBreaker for the starter and vscode screenshots! It's been enhanced with vitest by toddwseattle using the best of the [js react starter](https://github.com/criesbeck/react-vitest) from [c-riesbeck](https://users.cs.northwestern.edu/~riesbeck/) for use by Northwestern University CS 394 students and others who like consistent looking typescript code.
+So unlike other labs; you will define your own tests. Make sure they are in the

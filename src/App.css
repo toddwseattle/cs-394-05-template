@@ -45,13 +45,12 @@ button {
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 20vh; /* Changed from 100vh to 40vh */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-
   background: var(--bg-primay);
   color: var(--primay);
 }
@@ -63,17 +62,40 @@ button {
 
 .App-logo {
   transform-style: preserve-3d;
-  perspective: 1000px;
-}
-@keyframes App-logo-spin {
-  from {
-    transform: rotateY(0deg) rotateX(0deg) rotate(0deg);
-  }
-  to {
-    transform: rotateY(360deg) rotateX(360deg) rotate(360deg);
-  }
+  perspective: 500px;
 }
 
 button {
   font-size: calc(10px + 2vmin);
+}
+
+.timer-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.time-select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+}
+
+.timer-button {
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  border: none;
+  background-color: #282c34;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.timer-button:hover {
+  background-color: #373b44;
 }
