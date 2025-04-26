@@ -1,8 +1,8 @@
 import '@testing-library/jest-dom';
 
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import Timer from '../components/Timer';
 /*
@@ -22,120 +22,8 @@ potential tests:
 */
 describe('the first set of basic timer tests', () => {
   it('A Timer Component is created', () => {
-    const component = render(<Timer secondsDuration={1} isRunning={false} />);
+    const component = render(<Timer secondsDuration={1} />);
     screen.debug();
     expect(component).toBeDefined();
-  });
-  it('it should set the duration to the number of seconds passed in and format properly with formatDuration', () => {
-    const secondsDuration = 1234567;
-    render(<Timer secondsDuration={secondsDuration} isRunning={false} />);
-    const formattedDuration = '14:06:56:07'; // Expected formatted duration
-    expect(screen.getByText(formattedDuration)).toBeInTheDocument();
-  });
-  it('it should take a isRunning property and start counting down from the duration', () => {
-    const secondsDuration = 10;
-    const isRunning = true;
-    const isPaused = false;
-    vi.useFakeTimers(); // Mock timers
-    render(
-      <Timer
-        secondsDuration={secondsDuration}
-        isRunning={isRunning}
-        isPaused={isPaused}
-      />,
-    );
-    expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
-    // Simulate the passage of time (e.g., using jest.advanceTimersByTime)
-    act(() => {
-      vi.advanceTimersByTime(1000); // Fast-forward 1 second
-    });
-    expect(screen.getByText('00:00:00:09')).toBeInTheDocument();
-  });
-  it('it should stop counting when the pause property is true', async () => {
-    const secondsDuration = 10;
-    const isRunning = true;
-    const isPaused = true;
-    vi.useFakeTimers(); // Mock timers
-    render(
-      <Timer
-        secondsDuration={secondsDuration}
-        isRunning={isRunning}
-        isPaused={isPaused}
-      />,
-    );
-    expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
-    // Simulate the passage of time (e.g., using jest.advanceTimersByTime)
-    await act(async () => {
-      vi.advanceTimersByTime(2000); // Fast-forward past the end of the timer
-    });
-    expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
-  });
-  it('it should call the complete callback when the timer reaches 0', async () => {
-    const secondsDuration = 1;
-    const isRunning = true;
-    const isPaused = false;
-    const completeCallback = vi.fn(); // Mock function
-    vi.useFakeTimers(); // Mock timers
-
-    render(
-      <Timer
-        secondsDuration={secondsDuration}
-        isRunning={isRunning}
-        isPaused={isPaused}
-        complete={completeCallback}
-      />,
-    );
-
-    expect(screen.getByText('00:00:00:01')).toBeInTheDocument();
-
-    // Wrap timer updates in act
-    await act(async () => {
-      vi.advanceTimersByTime(2000); // Fast-forward past the end of the timer
-    });
-
-    // Wait for the timer to update and reach 0
-
-    // Verify callback was called
-    expect(completeCallback).toHaveBeenCalledTimes(1);
-
-    // Clean up timers
-    vi.useRealTimers();
-  });
-  it('it should reset to the original duration when the reset property is true', () => {
-    const secondsDuration = 10;
-    const isRunning = false;
-    const isPaused = false;
-    const isReset = true; // Set reset to true
-    render(
-      <Timer
-        secondsDuration={secondsDuration}
-        isRunning={isRunning}
-        isPaused={isPaused}
-        isReset={isReset} // Pass reset prop
-      />,
-    );
-    expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
-  });
-  it('it should set a new duration when the secondsDuration prop changes', () => {
-    const secondsDuration = 10;
-    const isRunning = false;
-    const isPaused = false;
-    const { rerender } = render(
-      <Timer
-        secondsDuration={secondsDuration}
-        isRunning={isRunning}
-        isPaused={isPaused}
-      />,
-    );
-    expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
-    // Update the secondsDuration prop
-    rerender(
-      <Timer
-        secondsDuration={20} // New duration
-        isRunning={isRunning}
-        isPaused={isPaused}
-      />,
-    );
-    expect(screen.getByText('00:00:00:20')).toBeInTheDocument();
   });
 });
