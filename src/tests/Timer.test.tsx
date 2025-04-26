@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
 
-import { act, render, screen, waitFor } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import React from 'react';
 import { describe, expect, it, vi } from 'vitest';
 
@@ -46,20 +46,15 @@ describe('the first set of basic timer tests', () => {
     );
     expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
     // Simulate the passage of time (e.g., using jest.advanceTimersByTime)
-    vi.advanceTimersByTime(1000); // Fast-forward 1 second
-    render(
-      <Timer
-        secondsDuration={secondsDuration}
-        isRunning={isRunning}
-        isPaused={isPaused}
-      />,
-    );
+    act(() => {
+      vi.advanceTimersByTime(1000); // Fast-forward 1 second
+    });
     expect(screen.getByText('00:00:00:09')).toBeInTheDocument();
   });
-  it('it should stop counting when the pause property is true', () => {
+  it('it should stop counting when the pause property is true', async () => {
     const secondsDuration = 10;
     const isRunning = true;
-    const isPaused = false;
+    const isPaused = true;
     vi.useFakeTimers(); // Mock timers
     render(
       <Timer
@@ -70,14 +65,9 @@ describe('the first set of basic timer tests', () => {
     );
     expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
     // Simulate the passage of time (e.g., using jest.advanceTimersByTime)
-    vi.advanceTimersByTime(1000); // Fast-forward 1 second
-    render(
-      <Timer
-        secondsDuration={secondsDuration}
-        isRunning={isRunning}
-        isPaused={isPaused}
-      />,
-    );
+    await act(async () => {
+      vi.advanceTimersByTime(2000); // Fast-forward past the end of the timer
+    });
     expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
   });
   it('it should call the complete callback when the timer reaches 0', async () => {
