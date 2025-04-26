@@ -10,6 +10,7 @@
     "test:watch": "vitest --ui --watch",
     "test:no-ui": "vitest",
     "grade-tests": "node ./scripts/grade.js",
+    "grade": "npm run build && npm run grade-tests",
     "coverage": "vitest --ui --coverage",
     "coverage:no-ui": "vitest --coverage",
     "lint:fix": "eslint ./src --ext .jsx,.js,.ts,.tsx --quiet --fix",

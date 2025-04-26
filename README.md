@@ -4,11 +4,16 @@
 
 In this lab, we will ask you to develop a timer component test first. Unlike the other labs; it's ok to pair or swarm with a few other. We will use react and vitetest to create a simple component using test driven development. The goal of this assignment:
 
--Learn a little bit of technical stuff about testing with vitest
-
+- Learn a little bit of technical stuff about testing with vitest
 - Give TDD a try to form an opinion.
 
 Please refrain from using AI on this assignment.
+
+## Who worked on this?
+
+**Fill in the following information in this file when you submit. \***
+
+- Your names here: the individual, pairs, or triads who worked on this assignment. Please put in name, and northwestern email.
 
 ## Steps
 
@@ -45,3 +50,24 @@ When you feel complete as a pair/triad; submit the url to the repo and pair/tria
 ## Verifying results
 
 So unlike other labs; you will define your own tests. Make sure they run with `npm test` and that they pass. Your goal is to have a working timer component that passes all the test. You should have at least 5 tests. Your test should cover at least 80% of the code in Timer.tsx (you are welcome to add tests to `App.tsx` which may helpful but not required). You can check this with `npm run coverage`. The vitest UI will show you precisely what lines have test coverage and don't. Even once you achieve high coverage; you still may not have a working component; as you find things you miss; write test for them. You can also use `npm run test:watch` to run the tests in watch mode. This will rerun the tests when you save the file. This is a great way to get fast feedback on your code. You can also use `npm run test:ui` to run the tests in a UI mode. This will show you the results of the tests in a more user-friendly way.
+
+## Grading Rubric
+
+To simulate grading, you can run `npm run grade`. You may want to just look at the test minimum and coverage portion; and that can be run with `npm run grade-test`.
+
+The grading is based on the following criteria:
+
+| Criteria                                         | Points |
+| ------------------------------------------------ | ------ |
+| Builds and runs without errors                   | 2      |
+| More than 5 tests completed and pass             | 4      |
+| 80% code coverage                                | 2      |
+| App runs correctly (timer starts, stops, resets) | 2      |
+
+## Submission
+
+submit a link to your repo and the names of the pair/triad/swarm to canvas. Each person should submit. Indicate the names of the pair/triad/swarm in the [README.md file at the top](#who-worked-on-this).
+
+```
+
+```
