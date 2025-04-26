@@ -101,4 +101,41 @@ describe('the first set of basic timer tests', () => {
     // Clean up timers
     vi.useRealTimers();
   });
+  it('it should reset to the original duration when the reset property is true', () => {
+    const secondsDuration = 10;
+    const isRunning = false;
+    const isPaused = false;
+    const isReset = true; // Set reset to true
+    render(
+      <Timer
+        secondsDuration={secondsDuration}
+        isRunning={isRunning}
+        isPaused={isPaused}
+        isReset={isReset} // Pass reset prop
+      />,
+    );
+    expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
+  });
+  it('it should set a new duration when the secondsDuration prop changes', () => {
+    const secondsDuration = 10;
+    const isRunning = false;
+    const isPaused = false;
+    const { rerender } = render(
+      <Timer
+        secondsDuration={secondsDuration}
+        isRunning={isRunning}
+        isPaused={isPaused}
+      />,
+    );
+    expect(screen.getByText('00:00:00:10')).toBeInTheDocument();
+    // Update the secondsDuration prop
+    rerender(
+      <Timer
+        secondsDuration={20} // New duration
+        isRunning={isRunning}
+        isPaused={isPaused}
+      />,
+    );
+    expect(screen.getByText('00:00:00:20')).toBeInTheDocument();
+  });
 });

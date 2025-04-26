@@ -40,8 +40,8 @@ When you feel complete as a pair/triad; submit the url to the repo and pair/tria
   - `screen.debug()` puts the html that would be rendered in the console
   - `screen.logTestingPlaygroundURL()` returns a url that you can traverse to see your current component rendered in the browser.
 
-- The assignment also has timing which is tricky and discussed in the mocking guide; as a hint you don’t need to mock the time of the computer to test elapsed time.
+- The assignment also has timing which is tricky and discussed in the mocking guide. I've solved this lab both by using a mock timer and by using the real timerYou can use `vi.useFakeTimers()` to mock the timers. To get rendering to work with the fake timers, you need to call `vi.advanceTimersByTime()` and wrap in `act(() => {})`. This is [stackoverflow](https://stackoverflow.com/questions/73609501/cant-test-timer-in-react-using-vitest-jest) provides the most precise explanation.
 
 ## Verifying results
 
-So unlike other labs; you will define your own tests. Make sure they are in the
+So unlike other labs; you will define your own tests. Make sure they run with `npm test` and that they pass. Your goal is to have a working timer component that passes all the test. You should have at least 5 tests. Your test should cover at least 80% of the code in Timer.tsx (you are welcome to add tests to `App.tsx` which may helpful but not required). You can check this with `npm run coverage`. The vitest UI will show you precisely what lines have test coverage and don't. Even once you achieve high coverage; you still may not have a working component; as you find things you miss; write test for them. You can also use `npm run test:watch` to run the tests in watch mode. This will rerun the tests when you save the file. This is a great way to get fast feedback on your code. You can also use `npm run test:ui` to run the tests in a UI mode. This will show you the results of the tests in a more user-friendly way.
