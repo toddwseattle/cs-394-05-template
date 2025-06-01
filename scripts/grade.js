@@ -2,7 +2,10 @@ import { execSync } from 'child_process';
 
 try {
   // Run the tests with coverage and no color output
-  const output = execSync('npx vitest run --coverage --no-color', { encoding: 'utf8' });
+  const output = execSync(
+    'npx vitest run --coverage --no-color --poolOptions.threads.singleThread=true',
+    { encoding: 'utf8' },
+  );
 
   // Initialize check results
   let testCount = 0;
